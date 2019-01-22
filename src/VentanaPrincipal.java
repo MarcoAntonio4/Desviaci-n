@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -129,9 +132,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   int tamanodearreglo;
     private void btnHechodatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechodatosActionPerformed
         // TODO add your handling code here:
+     
+        try{
+        tamanodearreglo=Integer.getInteger(JOptionPane.showInputDialog(this,"Ingresa el número de datos a analizar","Ingresar",JOptionPane.INFORMATION_MESSAGE));  
+        }catch(Exception error){
+        tamanodearreglo=Integer.getInteger(JOptionPane.showInputDialog(this,"Ingresa un número válido (solo enteros)","Ingresar",JOptionPane.INFORMATION_MESSAGE));      
+        }
+        
+        
+        
     }//GEN-LAST:event_btnHechodatosActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
