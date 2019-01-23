@@ -29,22 +29,36 @@ public class Devs extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        acept = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Devs");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Powered by");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 190, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 190, 50));
 
         jLabel2.setText(" Marco Antonio Gutierrez Jimenez");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 260, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 260, -1));
 
         jLabel3.setText(" Manuel Reyes Jimenez (Albert Ü )");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        acept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/idea.png"))); // NOI18N
+        acept.setText("Aceptar");
+        acept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptActionPerformed(evt);
+            }
+        });
+        getContentPane().add(acept, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_aceptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,6 +96,7 @@ public class Devs extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acept;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
