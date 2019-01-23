@@ -57,7 +57,7 @@ public class Devs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_aceptActionPerformed
 
     /**
