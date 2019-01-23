@@ -141,7 +141,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }catch(Exception error){
         tamanodearreglo=Integer.getInteger(JOptionPane.showInputDialog(this,"Ingresa un número válido (solo enteros)","Ingresar",JOptionPane.INFORMATION_MESSAGE));      
         }
-        
+        Double[] arreglovariables = new Double[tamanodearreglo];
+        int contador;
+        for(contador=0;contador<tamanodearreglo;contador++){
+            try{
+            arreglovariables[contador]= Double.parseDouble(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));   
+            
+            }catch(Exception error2){
+                
+            }
+        }
         
         
     }//GEN-LAST:event_btnHechodatosActionPerformed
