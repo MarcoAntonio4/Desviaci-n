@@ -20,6 +20,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,28 +145,78 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    int tamanodearreglo;
+   
+  
     private void btnHechodatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechodatosActionPerformed
         // TODO add your handling code here:
+       
+        tamanodearreglo= Integer.parseInt(spintamano.getValue().toString());
+        if(tamanodearreglo<=0){
+            Negativo();
+        }
+        else{
+        Proceso1();    
+        }
      
-        try{
-        tamanodearreglo=Integer.getInteger(JOptionPane.showInputDialog(this,"Ingresa el número de datos a analizar","Ingresar",JOptionPane.INFORMATION_MESSAGE));  
-        }catch(Exception error){
-        tamanodearreglo=Integer.getInteger(JOptionPane.showInputDialog(this,"Ingresa un número válido (solo enteros)","Ingresar",JOptionPane.INFORMATION_MESSAGE));      
-        }
-        Double[] arreglovariables = new Double[tamanodearreglo];
-        int contador;
-        for(contador=0;contador<tamanodearreglo;contador++){
-            try{
-            arreglovariables[contador]= Double.parseDouble(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));   
-            
-            }catch(Exception error2){
-                
-            }
-        }
-        
-        
     }//GEN-LAST:event_btnHechodatosActionPerformed
 
+    
+    int contador,contador2=0;
+
+Double[] arreglovariables = new Double[tamanodearreglo];
+    void Negativo(){
+        tamanodearreglo=Integer.parseInt(JOptionPane.showInputDialog(this,"Ingresa el tamaño del arreglo","Ingresar",JOptionPane.INFORMATION_MESSAGE));
+        Proceso1();
+    }
+    void Solicitar1(){
+        JOptionPane.showConfirmDialog(this, "Ingrese un número válido");
+        contador2 = contador;
+        Proceso1();
+    }
+    void Proceso1(){
+        if(tamanodearreglo<=0){
+            Negativo();  
+        }
+        else{
+        for(contador=contador2;contador<tamanodearreglo;contador++){
+            String temporal;
+           
+            temporal=(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));   
+           
+            System.out.println(temporal);
+            //////////////////////if((is(temporal)) == true){    
+            arreglovariables[contador]= Double.valueOf(temporal);
+         //   }
+            ///else{
+            Solicitar1();    
+            //}
+        }
+       
+        Calcula();
+        }
+    }
+ double resultado,semisumatoria,media,sumatoria,varianza;   
+ void Calcula(){
+     //calculamos la media
+     for(contador=0;contador<tamanodearreglo;contador++){
+           semisumatoria=+arreglovariables[contador];
+        }  
+     media=semisumatoria/tamanodearreglo;
+   //calculamos la sumatoria de la varianza
+     for(contador=0;contador<tamanodearreglo;contador++){
+           sumatoria=+((arreglovariables[contador]-media)*(arreglovariables[contador]-media));
+        }
+   //la dividimos y obetenemos la varianza
+   varianza=sumatoria/tamanodearreglo;
+   //calculamos la desviación estándar
+   resultado=Math.sqrt(varianza);
+   Mostrarenpantalla();
+ }
+   
+void Mostrarenpantalla(){
+    lblResultado.setText(String.valueOf(resultado));
+}
+ 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoActionPerformed
