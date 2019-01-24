@@ -193,7 +193,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   int tamanodearreglo;
+   int tamanodearreglo,bandera;
    
   
     private void btnHechodatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechodatosActionPerformed
@@ -235,7 +235,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     void Solicitar1(){
         JOptionPane.showConfirmDialog(this, "Ingrese un número válido");
-       int bandera;
+       
             bandera=contador;
             contador2=bandera;
             Proceso1();
@@ -243,15 +243,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     void Proceso1(){
     Double[] arreglovariables = new Double[tamanodearreglo];
         for(contador=contador2;contador<tamanodearreglo;contador++){
-            System.out.println(contador);
+            System.out.println("ssssss"+contador);
             String temporal;
             temporal=(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));      
             if(temporal.matches("-?\\d+(\\d+)?") == true){    
             arreglovariables[contador]= Double.valueOf(temporal);
-            int bandera;
+            
             bandera=contador;
             contador2=bandera;
-                System.out.println(contador2);
+            
+                System.out.println(contador);
             }
             else{
             Solicitar1();    
@@ -264,7 +265,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            semisumatoria+=arreglovariables[contador];
         }  
      media=semisumatoria/tamanodearreglo;
-        System.out.println(media);
    //calculamos la sumatoria de la varianza
      for(contador=0;contador<tamanodearreglo;contador++){
            sumatoria+=((arreglovariables[contador]-media)*(arreglovariables[contador]-media));
