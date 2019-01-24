@@ -86,25 +86,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbltxtResultado)
+                    .addComponent(btnNuevo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
-                        .addContainerGap())
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(spintamano, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnHechodatos)
+                        .addGap(153, 153, 153))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(lbltxtResultado))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(spintamano, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnHechodatos)
-                                .addGap(153, 153, 153))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))))))
+                        .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,19 +112,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(spintamano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnHechodatos)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spintamano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHechodatos)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbltxtResultado)
                             .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
+                        .addGap(29, 29, 29)
                         .addComponent(btnNuevo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
@@ -198,8 +198,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
   
     private void btnHechodatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechodatosActionPerformed
         // TODO add your handling code here:
-       
-        tamanodearreglo= Integer.parseInt(spintamano.getValue().toString());
+       try{
+           tamanodearreglo= Integer.parseInt(spintamano.getValue().toString());
+       }catch(Exception errorint){
+           Negativo();
+       }
+        
         if(tamanodearreglo<=0){
             Negativo();
         }
@@ -210,64 +214,79 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHechodatosActionPerformed
 
     
-    int contador,contador2=0;
+    int contador=0,contador2;
+    double resultado;
 
-Double[] arreglovariables = new Double[tamanodearreglo];
     void Negativo(){
+        try{
         tamanodearreglo=Integer.parseInt(JOptionPane.showInputDialog(this,"Ingresa el tamaño del arreglo","Ingresar",JOptionPane.INFORMATION_MESSAGE));
-        Proceso1();
+            if (tamanodearreglo<=0){
+            Negativo();
+            }
+            else{
+            Proceso1();
+            }
+        }catch(Exception error2){
+        Negativo();    
+        }
+        
     }
+ 
+    
     void Solicitar1(){
         JOptionPane.showConfirmDialog(this, "Ingrese un número válido");
-        contador2 = contador;
-        Proceso1();
+       int bandera;
+            bandera=contador;
+            contador2=bandera;
+            Proceso1();
     }
     void Proceso1(){
-        if(tamanodearreglo<=0){
-            Negativo();  
-        }
-        else{
+    Double[] arreglovariables = new Double[tamanodearreglo];
         for(contador=contador2;contador<tamanodearreglo;contador++){
+            System.out.println(contador);
             String temporal;
-           
-            temporal=(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));   
-           
-            System.out.println(temporal);
-            //////////////////////if((is(temporal)) == true){    
+            temporal=(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));      
+            if(temporal.matches("-?\\d+(\\d+)?") == true){    
             arreglovariables[contador]= Double.valueOf(temporal);
-         //   }
-            ///else{
+            int bandera;
+            bandera=contador;
+            contador2=bandera;
+                System.out.println(contador2);
+            }
+            else{
             Solicitar1();    
-            //}
+            }
         }
-       
-        Calcula();
-        }
-    }
- double resultado,semisumatoria,media,sumatoria,varianza;   
- void Calcula(){
-     //calculamos la media
-     for(contador=0;contador<tamanodearreglo;contador++){
-           semisumatoria=+arreglovariables[contador];
+        
+        double semisumatoria=0,media,sumatoria=0,varianza;   
+         //calculamos la media
+     for(contador=contador2;contador<tamanodearreglo;contador++){
+           semisumatoria+=arreglovariables[contador];
         }  
      media=semisumatoria/tamanodearreglo;
+        System.out.println(media);
    //calculamos la sumatoria de la varianza
      for(contador=0;contador<tamanodearreglo;contador++){
-           sumatoria=+((arreglovariables[contador]-media)*(arreglovariables[contador]-media));
+           sumatoria+=((arreglovariables[contador]-media)*(arreglovariables[contador]-media));
         }
    //la dividimos y obetenemos la varianza
    varianza=sumatoria/tamanodearreglo;
    //calculamos la desviación estándar
    resultado=Math.sqrt(varianza);
-   Mostrarenpantalla();
- }
    
+   Mostrarenpantalla();
+        }
+ 
+
 void Mostrarenpantalla(){
     lblResultado.setText(String.valueOf(resultado));
 }
  
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
+       spintamano.setValue(0);
+       contador2=0;
+       lblResultado.setText("----");
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
