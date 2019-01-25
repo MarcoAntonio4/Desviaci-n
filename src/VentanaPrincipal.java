@@ -1,5 +1,10 @@
 
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,9 +47,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        Abrir = new javax.swing.JMenuItem();
         guarda = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuNuevo = new javax.swing.JMenuItem();
+        mnuSalir = new javax.swing.JMenuItem();
         mnu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -137,30 +143,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
+        Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        Abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/carpeta.png"))); // NOI18N
+        Abrir.setText("Abrir");
+        Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Abrir);
+
         guarda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         guarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/disquete.png"))); // NOI18N
         guarda.setText("Guardar");
+        guarda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardaActionPerformed(evt);
+            }
+        });
         jMenu1.add(guarda);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nuevo.png"))); // NOI18N
-        jMenuItem3.setText("Nuevo");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mnuNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        mnuNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nuevo.png"))); // NOI18N
+        mnuNuevo.setText("Nuevo");
+        mnuNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mnuNuevoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(mnuNuevo);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salida.png"))); // NOI18N
-        jMenuItem2.setText("Salir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salida.png"))); // NOI18N
+        mnuSalir.setText("Salir");
+        mnuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnuSalirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(mnuSalir);
 
         jMenuBar1.add(jMenu1);
 
@@ -200,15 +221,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
        try{
            tamanodearreglo= Integer.parseInt(spintamano.getValue().toString());
+           System.out.println("Se puede sacar numero");
        }catch(Exception errorint){
+           System.out.println("Sale a negativo listener");
            Negativo();
+           
        }
         
         if(tamanodearreglo<=0){
+            System.out.println("sale a negativo listener2");
             Negativo();
+            
         }
         else{
+            System.out.println("sale a proceso 1 el listener");
         Proceso1();    
+            
         }
      
     }//GEN-LAST:event_btnHechodatosActionPerformed
@@ -221,29 +249,67 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try{
         tamanodearreglo=Integer.parseInt(JOptionPane.showInputDialog(this,"Ingresa el tamaño del arreglo","Ingresar",JOptionPane.INFORMATION_MESSAGE));
             if (tamanodearreglo<=0){
-            Negativo();
+            System.out.println("Se va a negativo 1");
+                Negativo2();
+                
             }
             else{
             Proceso1();
             }
         }catch(Exception error2){
+        System.out.println("Se va a negativo 2");
+            Negativo2();    
+        
+        }
+        
+    }
+    
+    
+    void Negativo2(){
+        try{
+        tamanodearreglo=Integer.parseInt(JOptionPane.showInputDialog(this,"Ingresa el tamaño del arreglo","Ingresar",JOptionPane.INFORMATION_MESSAGE));
+            if (tamanodearreglo<=0){
+                System.out.println("Se va a negativo 3");
+            Negativo();
+                
+            }
+            else{
+            Proceso1();
+            }
+        }catch(Exception error2){
+            System.out.println("Se va a negativo 4");
         Negativo();    
+        
         }
         
     }
  
     
     void Solicitar1(){
-        JOptionPane.showConfirmDialog(this, "Ingrese un número válido");
-       
-            bandera=contador;
-            contador2=bandera;
-            Proceso1();
+        JOptionPane.showMessageDialog(this, "Ingrese un número válido, los datos almacenados serán borrados");
+/*        String bandera2;
+        bandera=contador;
+            bandera2=String.valueOf(bandera);
+            contador2=Integer.parseInt(bandera2);
+            System.out.println("Valor del contador al ingresar String: "+contador);
+        
+        INTENTAMOS COLOCAR ESTE CODIGO PARA PODER MANDAR A LLAMAR LA FUNCION PROCESO1 A PARTIR DEL ULTIMO DIGITO EN EL QUE EL USUARIO SE EQUIVOCO
+        PERO AL RETORNAR A PROCESO 1, SI MANTENIA EL VALOR DEL CONTADOR COMO ANTES DE SALIR DEL FOR HACIA EL ERROR
+        Y PERMITIA DE NUEVO LA INSERCIÓN DEL NÚMERO, PERO DEJABA CON UN VALOR NULL EL VALOR DEL ARRAY, POR LO QUE AL MANDAR A LLAMAR EN EL FOR DE LAS
+        OPERACIONES, SALIA EL ERROR NullPointerException, DEBIDO A QUE INTENTABA ESTABLECER EL VALOR DE UNA VARIABLE EL CUAL NO HABÍA SIDO GUARDADO
+        
+  */    Limpiar();
     }
+    
     void Proceso1(){
     Double[] arreglovariables = new Double[tamanodearreglo];
+      double semisumatoria,media,sumatoria=0,varianza;   
+
+
         for(contador=contador2;contador<tamanodearreglo;contador++){
-            System.out.println("ssssss"+contador);
+            
+            
+            System.out.println("Valor del contador antes del if: "+contador);
             String temporal;
             temporal=(JOptionPane.showInputDialog(this,"Ingresa el numero: "+(contador+1),"Ingresar",JOptionPane.INFORMATION_MESSAGE));      
             if(temporal.matches("-?\\d+(\\d+)?") == true){    
@@ -251,30 +317,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
             bandera=contador;
             contador2=bandera;
-            
-                System.out.println(contador);
+            System.out.println("El último valor del arreglo es: "+arreglovariables[contador]);
+                System.out.println("Valor del contador al ingresar número "+contador);
+                
             }
             else{
+                System.out.println("Sale hacia el error de string");
             Solicitar1();    
+                
             }
         }
         
-        double semisumatoria=0,media,sumatoria=0,varianza;   
+        System.out.println("PASO DE UNO A OTRO");
+
          //calculamos la media
-     for(contador=contador2;contador<tamanodearreglo;contador++){
-           semisumatoria+=arreglovariables[contador];
+         bandera=0;
+         semisumatoria=0;
+         
+     for(bandera=0;bandera<tamanodearreglo;bandera++){
+         
+           semisumatoria+=arreglovariables[bandera];
+           System.out.println("Calculo de la semisumatoria");
         }  
      media=semisumatoria/tamanodearreglo;
+     
    //calculamos la sumatoria de la varianza
-     for(contador=0;contador<tamanodearreglo;contador++){
-           sumatoria+=((arreglovariables[contador]-media)*(arreglovariables[contador]-media));
+     for(bandera=0;bandera<tamanodearreglo;bandera++){
+           sumatoria+=((arreglovariables[bandera]-media)*(arreglovariables[bandera]-media));
+           System.out.println("Calculo de la sumatoria");
         }
+       
    //la dividimos y obetenemos la varianza
    varianza=sumatoria/tamanodearreglo;
    //calculamos la desviación estándar
    resultado=Math.sqrt(varianza);
+        System.out.println("Paso a mostrar pantalla");
    
    Mostrarenpantalla();
+    
         }
  
 
@@ -284,23 +364,123 @@ void Mostrarenpantalla(){
  
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-       spintamano.setValue(0);
-       contador2=0;
-       lblResultado.setText("----");
+    Limpiar();
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
+    void Limpiar(){
+         spintamano.setValue(0);
+       contador2=0;
+       contador=0;
+       lblResultado.setText("----");
+       bandera=0;
+       tamanodearreglo=0;
+        System.out.println("Se resetea"); 
+    }
+    
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     new Devs().setVisible(true);    
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
    System.exit(0);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mnuSalirActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnuNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuNuevoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        Limpiar();
+    }//GEN-LAST:event_mnuNuevoActionPerformed
 
+    private void guardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardaActionPerformed
+        // TODO add your handling code here:
+        guardar();
+    }//GEN-LAST:event_guardaActionPerformed
+
+    private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
+        // TODO add your handling code here:
+        abrir();
+    }//GEN-LAST:event_AbrirActionPerformed
+void abrir(){
+           int contadordeEntrada,extension;
+          String Textodesalida="";
+    JFileChooser file = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto","estadistica");
+        file.addChoosableFileFilter(filtro);
+        String nombredearchivo = "",Contenido;
+        FileInputStream entrada=null;
+        
+        if(file.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
+            nombredearchivo=file.getSelectedFile().getAbsolutePath();
+            System.out.println("Algo");
+            
+            try{
+            entrada = new FileInputStream(nombredearchivo);
+            
+            extension=entrada.read();
+            while(extension!=-1){
+                
+                Textodesalida+=(String.valueOf((char)extension));
+                    System.out.println((char)extension);
+                    extension=entrada.read();
+                
+                  
+            }
+            
+            
+            lblResultado.setText(Textodesalida);
+        }catch(Exception error){
+            
+            System.out.println("Error: "+error.toString());
+        }
+            try{
+                if(entrada !=null)
+                entrada.close();
+            }catch(Exception e){
+                
+            }
+        }
+        else{
+            System.out.println("Hubo un error");
+            return;
+        }
+        
+   
+        
+}
+    void guardar(){
+         String cadenadeSalida;
+         int contadordeSalida;
+        JFileChooser file = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto","estadistica");
+        file.addChoosableFileFilter(filtro);
+        String nombredearchivo = "";
+        cadenadeSalida=lblResultado.getText();
+        System.out.println(lblResultado.getText());
+        if(file.showSaveDialog(this)==JFileChooser.APPROVE_OPTION){ 
+            nombredearchivo = file.getSelectedFile().getAbsolutePath(); 
+            
+             BufferedOutputStream salida;
+            try{ //Lo que quieres intentar
+            salida = new BufferedOutputStream(new FileOutputStream(nombredearchivo+".estadistica"));
+            for(contadordeSalida=0;contadordeSalida<cadenadeSalida.length();contadordeSalida++){
+            salida.write(cadenadeSalida.charAt(contadordeSalida));
+            }
+            salida.flush();
+            salida.close();
+            
+            } catch(Exception error){ //lo que vas a realizar al recibir ese error
+                System.out.println("Error critico: "+error.toString());
+            }
+           
+           
+        }
+        else{
+            System.out.println("Hubo un error");
+            return;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -337,6 +517,7 @@ void Mostrarenpantalla(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Abrir;
     private javax.swing.JButton btnHechodatos;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JMenuItem guarda;
@@ -346,12 +527,12 @@ void Mostrarenpantalla(){
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JLabel lbltxtResultado;
     private javax.swing.JMenu mnu;
+    private javax.swing.JMenuItem mnuNuevo;
+    private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JSpinner spintamano;
     // End of variables declaration//GEN-END:variables
 }
